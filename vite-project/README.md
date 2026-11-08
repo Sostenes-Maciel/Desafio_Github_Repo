@@ -37,4 +37,5 @@ Uma aplicação frontend desenvolvida em TypeScript puro (Vanilla) seguindo a ar
 6. Abra o link gerado no terminal (geralmente `http://localhost:5173`) no seu navegador.
 
 ---
-**Desenvolvido por:** Sóstenes Marques Maciel
+**Desenvolvido por:** 
+Sóstenes Marques Maciel

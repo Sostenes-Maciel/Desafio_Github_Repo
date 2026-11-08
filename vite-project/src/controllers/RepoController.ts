@@ -47,15 +47,36 @@ export class RepoController {
 
       this.renderRepositories()
     })
+
+    this.view.favorites.addEventListener('click', (event) => {
+      const target = event.target
+
+      if (!(target instanceof HTMLButtonElement) || target.dataset.action !== 'remove-favorite') {
+        return
+      }
+
+      const item = target.closest<HTMLElement>('[data-repo-id]')
+      const repoId = Number(item?.dataset.repoId)
+      const repository = this.model.getFavorites().find((repo) => repo.id === repoId)
+
+      if (repository) {
+        this.model.toggleFavorite(repository)
+        this.renderRepositories()
+      }
+    })
+
+    this.renderRepositories()
   }
 
   private renderRepositories(): void {
     this.sortRepositories()
+    const favorites = this.model.getFavorites()
     this.view.renderRepositories(
       this.currentRepos,
-      this.model.getFavorites(),
+      favorites,
       this.model.getVisited(),
     )
+    this.view.renderFavorites(favorites)
   }
 
   private sortRepositories(): void {

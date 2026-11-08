@@ -1,21 +1,46 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pesquisa de repositórios</title>
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <input id="searchInput" type="text" placeholder="Nome do repositório" />
-    <button id="searchBtn">Pesquisar</button>
-    <select id="sortSelect">
-      <option value="">Ordenar por</option>
-      <option value="name-asc">Nome (A-Z)</option>
-      <option value="name-desc">Nome (Z-A)</option>
-      <option value="recent">Mais Recentes</option>
-    </select>
-    <div id="results"></div>
+    <main class="container">
+      <header class="page-header">
+        <p class="eyebrow">GitHub Explorer</p>
+        <h1>Encontre seu próximo repositório</h1>
+        <p class="subtitle">Pesquise, organize e salve repositórios para consultar depois.</p>
+      </header>
+
+      <section class="search-panel" aria-label="Pesquisar repositórios">
+        <div class="search-controls">
+          <input id="searchInput" type="text" placeholder="Nome do repositório" />
+          <button id="searchBtn" type="button">Pesquisar</button>
+        </div>
+        <label class="sort-control" for="sortSelect">
+          <span>Ordenação</span>
+          <select id="sortSelect">
+            <option value="">Ordenar por</option>
+            <option value="name-asc">Nome (A-Z)</option>
+            <option value="name-desc">Nome (Z-A)</option>
+            <option value="recent">Mais Recentes</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="favorites-section" aria-labelledby="favorites-title">
+        <div class="section-heading">
+          <h2 id="favorites-title">Meus favoritos</h2>
+          <span class="section-caption">Salvos neste dispositivo</span>
+        </div>
+        <div id="favorites" aria-live="polite"></div>
+      </section>
+
+      <div id="results" class="results" aria-live="polite"></div>
+    </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
