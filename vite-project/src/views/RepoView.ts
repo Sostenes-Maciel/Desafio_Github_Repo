@@ -1,3 +1,5 @@
+import type { Repository } from '../models/RepoModel.ts'
+
 export class RepoView {
   public readonly searchInput: HTMLInputElement
   public readonly searchBtn: HTMLButtonElement
@@ -11,5 +13,18 @@ export class RepoView {
 
   public getSearchValue(): string {
     return this.searchInput.value
+  }
+
+  public renderRepositories(repos: Repository[]): void {
+    this.results.innerHTML = `
+      <ul>
+        ${repos
+          .map(
+            (repo) =>
+              `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`,
+          )
+          .join('')}
+      </ul>
+    `
   }
 }
