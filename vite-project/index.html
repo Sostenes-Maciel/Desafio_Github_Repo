@@ -9,6 +9,12 @@
   <body>
     <input id="searchInput" type="text" placeholder="Nome do repositório" />
     <button id="searchBtn">Pesquisar</button>
+    <select id="sortSelect">
+      <option value="">Ordenar por</option>
+      <option value="name-asc">Nome (A-Z)</option>
+      <option value="name-desc">Nome (Z-A)</option>
+      <option value="recent">Mais Recentes</option>
+    </select>
     <div id="results"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

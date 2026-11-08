@@ -3,16 +3,22 @@ import type { Repository } from '../models/RepoModel.ts'
 export class RepoView {
   public readonly searchInput: HTMLInputElement
   public readonly searchBtn: HTMLButtonElement
+  public readonly sortSelect: HTMLSelectElement
   public readonly results: HTMLDivElement
 
   constructor() {
     this.searchInput = document.querySelector<HTMLInputElement>('#searchInput')!
     this.searchBtn = document.querySelector<HTMLButtonElement>('#searchBtn')!
+    this.sortSelect = document.querySelector<HTMLSelectElement>('#sortSelect')!
     this.results = document.querySelector<HTMLDivElement>('#results')!
   }
 
   public getSearchValue(): string {
     return this.searchInput.value
+  }
+
+  public getSortValue(): string {
+    return this.sortSelect.value
   }
 
   public renderRepositories(
