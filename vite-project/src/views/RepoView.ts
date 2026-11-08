@@ -15,14 +15,26 @@ export class RepoView {
     return this.searchInput.value
   }
 
-  public renderRepositories(repos: Repository[]): void {
+  public renderRepositories(
+    repos: Repository[],
+    favorites: Repository[],
+    visited: Repository[],
+  ): void {
     this.results.innerHTML = `
       <ul>
         ${repos
-          .map(
-            (repo) =>
-              `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`,
-          )
+          .map((repo) => {
+            const isFavorite = favorites.some((favorite) => favorite.id === repo.id)
+            const isVisited = visited.some((item) => item.id === repo.id)
+
+            return `
+              <li${isVisited ? ' style="background-color: #e8e8e8"' : ''} data-repo-id="${repo.id}">
+                <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a>
+                <button type="button" data-action="favorite">${isFavorite ? 'Remover dos Favoritos' : 'Favoritar'}</button>
+                <button type="button" data-action="visited"${isVisited ? ' disabled' : ''}>${isVisited ? 'Visualizado' : 'Marcar como Visualizado'}</button>
+              </li>
+            `
+          })
           .join('')}
       </ul>
     `
